@@ -1,0 +1,133 @@
+body{
+    background-color: lightgray;
+    font-size: 15px;
+}
+
+.inicio{
+    position: relative;
+    height: 150px;
+    width: 100%;
+    border: 3px solid blue;
+    margin: 10px;
+    background-color: bisque;
+    margin-right: 5px;
+}
+
+.png-esquerdo1 {
+    position:absolute;
+    left: 0;
+    bottom: 25px;
+}
+
+.png-direito1 {
+    position:absolute;
+    right: 0;
+    top: 25px;
+    margin-right: 10px;
+}
+
+h1{
+    font-size: 30px;
+    color: darkgreen;
+    padding: 40px;
+    text-align: center;
+}
+
+.menu {
+    background-color: lightskyblue;
+    padding: 18px;
+    text-align: center;
+}
+
+.menu a {
+    margin: 0 60px;
+}
+
+p{
+    color:   indigo;
+    text-align: center;
+}
+
+.imagens{
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 20px;
+}
+
+h2{
+    font-size: 26px;
+    color: black;
+    text-align: center;
+}
+
+#iframes{
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 20px;  
+}
+
+a{
+    color:darkred;
+}
+
+table {
+    margin: 20px auto;
+    border: 4px dashed red;
+}
+
+th, td{
+    border: 1px solid red;
+    padding: 6px;
+    text-align: center;
+}
+
+th {
+    color: red;
+    font-weight: bold;
+}
+
+.lista {
+    margin: auto;
+    display: flex;
+    background-color: yellow;
+    width: fit-content;
+    padding: 10px 30px;
+}
+
+.sem-pontos {
+    list-style: none;
+    font-size: 15px;
+}
+
+.rodape{
+    background-color: bisque;
+    position: relative;
+    height: 200px;
+    width: 100%;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.png-esquerdo {
+    position:absolute;
+    left: 0;
+    top: 50px;
+}
+
+.png-direito {
+    position:absolute;
+    right: 0;
+    top: 50px;
+    margin-right: 10px;
+}
+
+.text-rodape{
+    position: absolute;
+    left: 40%;
+    right: 40%;
+    top: 50px;
+    color: black;
+    font-size: 17px;
+    white-space: nowrap;
+}
