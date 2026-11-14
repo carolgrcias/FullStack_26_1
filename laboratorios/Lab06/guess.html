@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da Adivinhação</title>
+    <link rel="stylesheet" href="guess.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Jogo da Adivinhação</h1>
+
+        <p>Tente adivinhar o número entre 0 e 99!</p>
+
+        <input type="number" id="palpite" min="0" max="99" placeholder="Digite um número">
+
+        <button onclick="verificarPalpite()">Adivinhar</button>
+
+        <p id="mensagem">Boa sorte!</p>
+    </div>
+
+    <script src="guess.js"></script>
+</body>
+</html>
