@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Animação</title>
+
+    <style>
+        /* Cor do fundo da página */
+        body {
+            background-color: #fff4e0;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+
+            /* Centralização dos elementos da página */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            color: #8a4b00;
+        }
+
+        canvas {
+            background-color: white;
+            border: 1px solid black;
+        }
+
+        a {
+            margin-top: 10px;
+            color: #8a4b00;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Animação</h1>
+
+    <!-- Área de desenho com tamanho 300 x 300 -->
+    <canvas id="meuCanvas" width="300" height="300"></canvas>
+
+    <p>Mova o mouse: a imagem segue o ponteiro.</p>
+
+    <a href="Projects.html">Voltar para Projetos</a>
+
+    <script>
+        const canvas = document.getElementById("meuCanvas");
+        const ctx = canvas.getContext("2d");
+
+        /* ===================== IMAGEM ===================== */
+
+        const LARGURA = 50;   // largura da imagem no canvas
+        const ALTURA = 50;    // altura da imagem no canvas
+
+        const imagem = new Image();
+
+        const svg =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">' +
+            '<circle cx="25" cy="25" r="23" fill="gold" stroke="black" stroke-width="2"/>' +
+            '<circle cx="17" cy="20" r="3"/>' +
+            '<circle cx="33" cy="20" r="3"/>' +
+            '<path d="M15 30 Q25 40 35 30" fill="none" stroke="black" stroke-width="2"/>' +
+            '</svg>';
+        imagem.src = "data:image/svg+xml," + encodeURIComponent(svg);
+
+        /* ===================== MOUSE ===================== */
+
+        // Posição do mouse dentro do canvas (começa no centro)
+        let mouseX = canvas.width / 2;
+        let mouseY = canvas.height / 2;
+
+        document.addEventListener("mousemove", function (evento) {
+            const retangulo = canvas.getBoundingClientRect();
+            mouseX = evento.clientX - retangulo.left;
+            mouseY = evento.clientY - retangulo.top;
+        });
+
+        /* ===================== ANIMAÇÃO ===================== */
+
+        function desenhar() {
+            // Limpa o canvas antes de desenhar o próximo quadro
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Centraliza a imagem no ponteiro do mouse:
+            // o canto da imagem fica metade da largura/altura antes do mouse
+            let x = mouseX - LARGURA / 2;
+            let y = mouseY - ALTURA / 2;
+
+            // A imagem NUNCA sai do canvas:
+            if (x < 0) {
+                x = 0;
+            }
+            if (x > canvas.width - LARGURA) {
+                x = canvas.width - LARGURA;
+            }
+            if (y < 0) {
+                y = 0;
+            }
+            if (y > canvas.height - ALTURA) {
+                y = canvas.height - ALTURA;
+            }
+
+            ctx.drawImage(imagem, x, y, LARGURA, ALTURA);
+
+            requestAnimationFrame(desenhar);
+        }
+
+        desenhar();
+    </script>
+
+</body>
+</html>
