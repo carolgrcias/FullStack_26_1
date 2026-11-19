@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="/carros.css">
+</head>
+<body>
+<div class="container">
+  <% if (liberado) { %>
+    <h1>Bem-vindo(a), <%= nome %>!</h1>
+    <p class="links"><a href="/gerenciar">Ir para a gerência de carros</a></p>
+  <% } else { %>
+    <h1>Usuário ou senha incorretos!</h1>
+    <p class="links">
+      <a href="/login">Tentar de novo</a> |
+      <a href="/cadastra">Criar conta</a>
+    </p>
+  <% } %>
+</div>
+</body>
+</html>

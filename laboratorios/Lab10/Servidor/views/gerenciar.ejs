@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerência de Carros</title>
+  <link rel="stylesheet" href="/carros.css">
+</head>
+<body>
+<div class="container">
+  <h1>Gerência de Carros</h1>
+
+  <!-- ===== CREATE: cadastrar novo carro ===== -->
+  <h2>Cadastrar novo carro</h2>
+  <form action="/cadastrar_carro" method="post">
+    <input name="marca" placeholder="Marca" required>
+    <input name="modelo" placeholder="Modelo" required>
+    <input name="ano" type="number" placeholder="Ano" required>
+    <input name="qtde_disponivel" type="number" min="0" placeholder="Quantidade" required>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <!-- ===== READ + UPDATE (vender) + DELETE (remover) ===== -->
+  <h2>Estoque</h2>
+  <table>
+    <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Ano</th>
+      <th>Qtde disponível</th>
+      <th>Ações</th>
+    </tr>
+
+    <% listaCarros.forEach(function (c) { %>
+      <tr>
+        <td><%= c.marca %></td>
+        <td><%= c.modelo %></td>
+        <td><%= c.ano %></td>
+        <td>
+          <!-- if dentro do EJS: quantidade 0 mostra "Esgotado" -->
+          <% if (c.qtde_disponivel == 0) { %>
+            <span class="esgotado">Esgotado</span>
+          <% } else { %>
+            <%= c.qtde_disponivel %>
+          <% } %>
+        </td>
+        <td>
+          <!-- input hidden: campo invisível que leva o modelo DESTA linha -->
+          <form class="acao" action="/vender_carro" method="post">
+            <input type="hidden" name="modelo" value="<%= c.modelo %>">
+            <button type="submit">Vender</button>
+          </form>
+          <form class="acao" action="/remover_carro" method="post">
+            <input type="hidden" name="modelo" value="<%= c.modelo %>">
+            <button type="submit" class="remover">Remover</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+
+  <% if (listaCarros.length == 0) { %>
+    <p>Nenhum carro cadastrado ainda.</p>
+  <% } %>
+
+  <!-- ===== UPDATE: atualizar ano e quantidade ===== -->
+  <h2>Atualizar carro</h2>
+  <form action="/atualizar_carro" method="post">
+    <!-- select montado a partir do banco: uma opção para cada carro -->
+    <select name="modelo" required>
+      <% listaCarros.forEach(function (c) { %>
+        <option value="<%= c.modelo %>"><%= c.marca %> <%= c.modelo %></option>
+      <% }) %>
+    </select>
+    <input name="ano" type="number" placeholder="Novo ano" required>
+    <input name="qtde_disponivel" type="number" min="0" placeholder="Nova quantidade" required>
+    <button type="submit">Atualizar</button>
+  </form>
+
+  <p class="links">
+    <a href="/carros">Ver listagem de carros</a> |
+    <a href="/">Página de projetos</a>
+  </p>
+</div>
+</body>
+</html>

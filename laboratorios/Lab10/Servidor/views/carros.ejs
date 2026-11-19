@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Carros</title>
+  <link rel="stylesheet" href="/carros.css">
+</head>
+<body>
+<div class="container">
+  <h1>Carros disponíveis</h1>
+
+  <table>
+    <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Ano</th>
+      <th>Qtde disponível</th>
+    </tr>
+
+    <% listaCarros.forEach(function (c) { %>
+      <tr>
+        <td><%= c.marca %></td>
+        <td><%= c.modelo %></td>
+        <td><%= c.ano %></td>
+        <td>
+          <% if (c.qtde_disponivel == 0) { %>
+            <span class="esgotado">Esgotado</span>
+          <% } else { %>
+            <%= c.qtde_disponivel %>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+
+  <% if (listaCarros.length == 0) { %>
+    <p>Nenhum carro cadastrado ainda.</p>
+  <% } %>
+
+  <p class="links">
+    <a href="/login">Área do vendedor (login)</a> |
+    <a href="/cadastra">Cadastrar usuário</a> |
+    <a href="/">Página de projetos</a>
+  </p>
+</div>
+</body>
+</html>
